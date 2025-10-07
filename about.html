@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Brew & Bloom • Our Story</title>
+  <meta name="description" content="Learn about Brew & Bloom, our values, sourcing, and the people behind our craft coffee." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root{ --primary:#6f4e37; --secondary:#8b5e3c; --accent:#d69a2b; --glass-border: rgba(0,0,0,0.15); }
+    body.dark-mode{ background:#0f0f0f; color:#e7e7e7; }
+    body.light-mode{ background:#f7f4ef; color:#1e293b; }
+    .glass{ background: rgba(255,255,255,.75); backdrop-filter: blur(12px); border:1px solid var(--glass-border); }
+    .glass-card{ background: rgba(255,255,255,.65); border:1px solid var(--glass-border); }
+    .cursor-dot{ width:8px; height:8px; border-radius:50%; background: var(--accent); position:fixed; z-index:9999; pointer-events:none; }
+    .cursor-outline{ width:40px; height:40px; border:2px solid var(--accent); border-radius:50%; position:fixed; z-index:9998; pointer-events:none; }
+  </style>
+</head>
+<body class="light-mode">
+  <header class="glass fixed w-full top-0 z-40">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+      <a href="index.html" class="text-2xl font-semibold">Brew & Bloom</a>
+      <ul class="hidden md:flex items-center gap-6 text-sm" aria-label="Main navigation">
+        <li><a href="index.html" class="hover:underline">Home</a></li>
+        <li><a href="shop.html" class="hover:underline">Shop</a></li>
+        <li><a href="about.html" class="hover:underline">About</a></li>
+        <li><a href="contact.html" class="hover:underline">Contact</a></li>
+      </ul>
+      <button id="dark-mode-toggle" class="glass px-3 py-2" aria-label="Toggle dark mode">🌙</button>
+    </nav>
+  </header>
+
+  <main id="content" class="pt-28 pb-20 container mx-auto px-6">
+    <section class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+      <div class="glass p-6 md:p-8">
+        <h1 class="text-3xl font-bold mb-2" style="font-family: Inter, sans-serif;">Our Story</h1>
+        <p class="text-sm text-gray-700">Brew & Bloom began as a small roastery with a big dream: connect people with thoughtfully sourced coffee. We partner with farmers who practice sustainable farming, bringing you peak flavor and responsible sourcing.</p>
+      </div>
+      <div class="glass p-6 md:p-8">
+        <h2 class="text-xl font-semibold mb-2" style="font-family: Space Grotesk, sans-serif;">Values</h2>
+        <ul class="list-disc pl-5 text-sm text-gray-700 space-y-2">
+          <li>Transparency in sourcing</li>
+          <li>Small-batch roasting for consistent flavor</li>
+          <li>Welcoming spaces for community</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="mb-12" aria-label="Team">
+      <h2 class="text-2xl font-bold mb-4" style="font-family: Inter, sans-serif;">Meet Our Team</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="glass-card p-6"> 
+          <div class="w-14 h-14 rounded-full bg-amber-200 mb-2 flex items-center justify-center">🍊</div>
+          <h3 class="font-semibold">Ava Clarke</h3>
+          <p class="text-sm text-gray-700">Head Roaster. Passionate about origin flavors and roast profiles.</p>
+        </div>
+        <div class="glass-card p-6">
+          <div class="w-14 h-14 rounded-full bg-amber-200 mb-2 flex items-center justify-center">🎯</div>
+          <h3 class="font-semibold">Jordan Reed</h3>
+          <p class="text-sm text-gray-700">Cafe Operations Manager. Creating welcoming experiences.</p>
+        </div>
+        <div class="glass-card p-6">
+          <div class="w-14 h-14 rounded-full bg-amber-200 mb-2 flex items-center justify-center">💬</div>
+          <h3 class="font-semibold">Mia Chen</h3>
+          <p class="text-sm text-gray-700">Community Outreach. Hosting latte art workshops and tastings.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-gray-200 mt-12 bg-white/70 dark:bg-black/40">
+    <div class="container mx-auto px-6 py-8 text-sm text-gray-600 flex flex-col md:flex-row justify-between items-center gap-4">
+      <span>© 2025 Brew & Bloom. All rights reserved.</span>
+      <nav class="flex gap-4" aria-label="Footer links">
+        <a href="index.html" class="hover:underline">Home</a>
+        <a href="shop.html" class="hover:underline">Shop</a>
+        <a href="about.html" class="hover:underline">About</a>
+        <a href="contact.html" class="hover:underline">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    function initDarkMode(){ const toggle=document.getElementById('dark-mode-toggle'); const apply=(dark)=>{ document.body.classList.toggle('dark-mode', dark); document.body.classList.toggle('light-mode', !dark); toggle.textContent = dark? '☀️':'🌙'; localStorage.setItem('coffee-theme', ''+dark); }; const saved=localStorage.getItem('coffee-theme'); const isDark = saved ? saved==='true' : window.matchMedia('(prefers-color-scheme: dark)').matches; apply(isDark); toggle.addEventListener('click', ()=> apply(!document.body.classList.contains('dark-mode'))); }
+    function initParticles(){ const canvas=document.getElementById('particles-canvas'); if(!canvas) return; const ctx=canvas.getContext('2d'); let w=canvas.width=window.innerWidth, h=canvas.height=window.innerHeight; const dots=Array.from({length:70},()=>({x:Math.random()*w,y:Math.random()*h,r:Math.random()*2+1,vx:(Math.random()-0.5)*0.6,vy:(Math.random()-0.5)*0.6,a:Math.random()*0.6+0.2})); window.addEventListener('resize', ()=>{ w=canvas.width=window.innerWidth; h=canvas.height=window.innerHeight; }); (function loop(){ ctx.clearRect(0,0,w,h); for(const p of dots){ p.x+=p.vx; p.y+=p.vy; if(p.x>w) p.x=0; if(p.x<0) p.x=w; if(p.y>h) p.y=0; if(p.y<0) p.y=h; ctx.fillStyle='rgba(255,255,255,'+p.a+')'; ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill(); } for(let i=0;i<dots.length;i++){ for(let j=i+1;j<dots.length;j++){ const dx=dots[i].x-dots[j].x, dy=dots[i].y-dots[j].y; const d=Math.hypot(dx,dy); if(d<120){ ctx.strokeStyle='rgba(255,255,255,'+ (0.1*(1-d/120)) +')'; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(dots[i].x,dots[i].y); ctx.lineTo(dots[j].x,dots[j].y); ctx.stroke(); } } } requestAnimationFrame(loop); })(); }
+    function initAll(){ initDarkMode(); initParticles(); }
+    if (document.readyState==='loading'){ document.addEventListener('DOMContentLoaded', initAll); } else { initAll(); }
+  </script>
+</body>
+</html>
