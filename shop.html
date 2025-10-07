@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Brew & Bloom Shop • Coffees & Merch</title>
+  <meta name="description" content="Shop our handcrafted coffees, seasonal blends, and brewing gear. Freshly roasted beans and gear for home brewers." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root{ --primary:#6f4e37; --secondary:#8b5e3c; --accent:#d69a2b; --glass-border: rgba(0,0,0,0.15); }
+    body.dark-mode { background:#0f0f0f; color:#e7e7e7; }
+    body.light-mode { background:#f7f4ef; color:#1e293b; }
+    .glass { background: rgba(255,255,255,.75); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border:1px solid var(--glass-border); }
+    .glass-card { background: rgba(255,255,255,.65); border:1px solid var(--glass-border); border-radius:12px; }
+    .cursor-dot { width:8px; height:8px; border-radius:50%; background: var(--accent); position: fixed; z-index: 9999; pointer-events: none; transform: translate(-50%,-50%); }
+    .cursor-outline { width:40px; height:40px; border:2px solid var(--accent); border-radius:50%; position: fixed; z-index: 9998; pointer-events: none; transform: translate(-50%,-50%); }
+  </style>
+</head>
+<body class="light-mode">
+  <canvas id="particles-canvas" class="absolute inset-0"></canvas>
+  <header class="glass fixed w-full top-0 z-40">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+      <a href="index.html" class="text-2xl font-semibold" aria-label="Brew & Bloom Home">Brew & Bloom</a>
+      <ul class="hidden md:flex items-center gap-6 text-sm" aria-label="Shop navigation">
+        <li><a href="index.html" class="hover:underline">Home</a></li>
+        <li><a href="shop.html" class="hover:underline">Shop</a></li>
+        <li><a href="about.html" class="hover:underline">About</a></li>
+        <li><a href="contact.html" class="hover:underline">Contact</a></li>
+      </ul>
+      <button id="dark-mode-toggle" class="glass px-3 py-2" aria-label="Toggle dark mode">🌙</button>
+    </nav>
+  </header>
+
+  <main id="content" class="pt-28 pb-20 container mx-auto px-4">
+    <section class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12" aria-label="Shop hero">
+      <div class="glass p-6 md:p-8">
+        <h1 class="text-3xl font-bold mb-2" style="font-family: Inter, sans-serif;">Shop Coffee & Gear</h1>
+        <p class="text-sm text-gray-700">Discover our freshly roasted beans, seasonal blends, and brewer gear. Freshly roasted every week.</p>
+      </div>
+      <div class="glass p-6 md:p-8 flex items-center justify-center">
+        <div class="text-center">
+          <div class="text-6xl mb-2">☕</div>
+          <p>Free shipping over $50</p>
+        </div>
+      </div>
+    </section>
+
+    <section aria-label="Product grid">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Product Card 1 -->
+        <article class="glass-card p-5 flex flex-col">
+          <div class="flex items-center justify-between mb-3">
+            <div class="text-3xl">☕</div>
+            <span class="px-2 py-1 rounded-full text-xs bg-amber-200" aria-label="Origin">Colombia</span>
+          </div>
+          <h3 class="font-semibold text-lg mb-2">Espresso Roast</h3>
+          <p class="text-sm text-gray-700 mb-4">Balanced; chocolaty with a caramel finish.</p>
+          <div class="mt-auto flex items-center justify-between">
+            <span class="text-lg font-semibold">$14.00</span>
+            <button class="px-4 py-2 rounded-full glass" aria-label="Add Espresso Roast to cart">Add to Cart</button>
+          </div>
+        </article>
+        <!-- Product Card 2 -->
+        <article class="glass-card p-5 flex flex-col">
+          <div class="flex items-center justify-between mb-3"><div class="text-3xl">☕</div><span class="px-2 py-1 rounded-full text-xs bg-amber-200" aria-label="Origin">Ethiopia</span></div>
+          <h3 class="font-semibold text-lg mb-2">Pour-Over Halo</h3>
+          <p class="text-sm text-gray-700 mb-4">Floral aroma, bright acidity, clean finish.</p>
+          <div class="mt-auto flex items-center justify-between"><span class="text-lg font-semibold">$16.50</span><button class="px-4 py-2 rounded-full glass" aria-label="Add Pour-Over Halo to cart">Add to Cart</button></div>
+        </article>
+        <!-- Product Card 3 -->
+        <article class="glass-card p-5 flex flex-col">
+          <div class="flex items-center justify-between mb-3"><div class="text-3xl">☕</div><span class="px-2 py-1 rounded-full text-xs bg-amber-200" aria-label="Origin">Kenya</span></div>
+          <h3 class="font-semibold text-lg mb-2">Cold Brew</h3>
+          <p class="text-sm text-gray-700 mb-4">Smooth, chocolatey notes with a crisp finish.</p>
+          <div class="mt-auto flex items-center justify-between"><span class="text-lg font-semibold">$15.00</span><button class="px-4 py-2 rounded-full glass" aria-label="Add Cold Brew to cart">Add to Cart</button></div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-gray-200 mt-12 bg-white/70 dark:bg-black/40">
+    <div class="container mx-auto px-6 py-8 text-sm text-gray-600 flex flex-col md:flex-row justify-between items-center gap-4">
+      <span>© 2025 Brew & Bloom. All rights reserved.</span>
+      <nav class="flex gap-4" aria-label="Footer links">
+        <a href="index.html" class="hover:underline">Home</a>
+        <a href="shop.html" class="hover:underline">Shop</a>
+        <a href="about.html" class="hover:underline">About</a>
+        <a href="contact.html" class="hover:underline">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    // Reuse basic systems from index for consistency
+    function initParticles(){ const canvas=document.getElementById('particles-canvas'); if(!canvas) return; const ctx=canvas.getContext('2d'); let w=canvas.width=window.innerWidth, h=canvas.height=window.innerHeight; const dots=Array.from({length:80},()=>({x:Math.random()*w,y:Math.random()*h,r:Math.random()*2+1,vx:(Math.random()-0.5)*0.6,vy:(Math.random()-0.5)*0.6,a:Math.random()*0.6+0.2})); function resize(){w=canvas.width=window.innerWidth; h=canvas.height=window.innerHeight;} window.addEventListener('resize',resize); (function animate(){ ctx.clearRect(0,0,w,h); for(const p of dots){ p.x+=p.vx; p.y+=p.vy; if(p.x>w) p.x=0; if(p.x<0) p.x=w; if(p.y>h) p.y=0; if(p.y<0) p.y=h; ctx.fillStyle='rgba(255,255,255,'+p.a+')'; ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill(); } // lines
+        for(let i=0;i<dots.length;i++){ for(let j=i+1;j<dots.length;j++){ const dx=dots[i].x-dots[j].x, dy=dots[i].y-dots[j].y; const d=Math.hypot(dx,dy); if(d<120){ ctx.strokeStyle='rgba(255,255,255,'+ (0.1*(1-d/120)) +')'; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(dots[i].x,dots[i].y); ctx.lineTo(dots[j].x,dots[j].y); ctx.stroke(); } } } requestAnimationFrame(animate); })(); })(); }
+    function initCustomCursor(){ const dot=document.createElement('div'); dot.className='cursor-dot'; document.body.appendChild(dot); const outline=document.createElement('div'); outline.className='cursor-outline'; document.body.appendChild(outline); let mx=0,my=0,ox=0,oy=0; document.addEventListener('mousemove',e=>{ mx=e.clientX; my=e.clientY; dot.style.left=mx+'px'; dot.style.top=my+'px'; }); (function loop(){ ox+= (mx-ox)*0.15; oy+= (my-oy)*0.15; outline.style.left=ox+'px'; outline.style.top=oy+'px'; requestAnimationFrame(loop); })(); }
+    function initDarkMode(){ const toggle=document.getElementById('dark-mode-toggle'); const apply=(dark)=>{ document.body.classList.toggle('dark-mode', dark); document.body.classList.toggle('light-mode', !dark); toggle.textContent = dark? '☀️':'🌙'; localStorage.setItem('coffee-theme', ''+dark); }; const saved=localStorage.getItem('coffee-theme'); const isDark = saved ? saved==='true' : window.matchMedia('(prefers-color-scheme: dark)').matches; apply(isDark); toggle.addEventListener('click', ()=> apply(!document.body.classList.contains('dark-mode'))); }
+    function initLoadingScreen(){ const loader=document.getElementById('loading-screen'); const t=setInterval(()=>{ const n=document.getElementById('loading-text'); if(n) { n.textContent += '.'; } }, 700); window.addEventListener('load', ()=>{ clearInterval(t); loader.style.opacity='0'; setTimeout(()=>loader.remove(), 500); }); }
+    function initAll(){ initParticles(); initCustomCursor(); initDarkMode(); initLoadingScreen(); }
+    if(document.readyState==='loading'){ document.addEventListener('DOMContentLoaded', initAll); } else { initAll(); }
+  </script>
+</body>
+</html>
